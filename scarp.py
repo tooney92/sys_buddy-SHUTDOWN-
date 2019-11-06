@@ -3,20 +3,30 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 time = {}
-for num in range(7, 11):
-    time.update({str(num)+'am':num})
-time.update({'12pm':12})
-count = 13
-for num in range(1, 12):
-    time.update({str(num)+'pm': count})
-    count+=1
+for num in range(1, 13):
+    time.update({str(num):num})
+
+# count = 13
+# for num in range(1, 12):
+#     time.update({str(num): count})
+#     count+=1
 # da47ca8f8d873c1e71c99be10d832cb3
 #api.openweathermap.org/data/2.5/forecast?q={city name},{country code}
 
 def test_func():
-    result = time.get(close_optionVar.get()) - time.get(optionVar.get())
+    result = time.get(close_optionVar.get()) - time.get(curr_optionvar.get())
     user_shutdown_time_label.config(text=str(result))
-    print('this is the entry:', entry)
+    # count = 0
+    # samp = []
+    # while count<20:
+    #     time.sleep(1)
+    #     print('hello')
+    #     samp.append('hello')
+    #     count+=1
+    # print(datetime.datetime.now())
+    # print(len(samp))
+    # os.system("shutdown /sc /t 1")
+        # print('this is the entry:', entry)
 
 # def get_weather(city):
 #     weather_key = 'da47ca8f8d873c1e71c99be10d832cb3'
@@ -45,39 +55,61 @@ sys_bud_label = tk.Label(frame, text = 'sleep_buddy',font= "Verdana 10", bd =6,)
 sys_bud_label.place(relwidth=1,relheight =1)
 
 
-resumption_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
-resumption_frame.place(relx=0.5, rely=0.35,relwidth=0.37,relheight =0.05, anchor='n')
-user_resumption_time_label = tk.Label(resumption_frame, text= 'Resumption Time:', relief = 'solid',)
-user_resumption_time_label.place(relwidth=1,relheight =1)
+start_frame = tk.Frame(window, bg = '#1a0500', bd= 5) #creates start time frame
+start_frame.place(relx=0.5, rely=0.19,relwidth=0.37,relheight =0.05, anchor='n') #positions start time frame
+user_start_time_label = tk.Label(start_frame, text= 'Start Time:', relief = 'solid',) #places label in start time frame
+user_start_time_label.place(relwidth=1,relheight =1) #postions label
+
+hour_optionvar = tk.StringVar() #creates option variable for user's hour selection from option menu
+hour_optionvar.set('7') #default vaule is set to here <------
+
+user_current_entry_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
+user_current_entry_frame.place(relx=0.5, rely=0.23,relwidth=0.25,relheight =0.07, anchor='n')
+user_current_time_option_menu = tk.OptionMenu(user_current_entry_frame, hour_optionvar, *time.keys())
+user_current_time_option_menu.pack(side = 'left')
+
+minute_optionvar = tk.StringVar()
+minute_optionvar.set("00")
+samp_option_menu = tk.OptionMenu(user_current_entry_frame, minute_optionvar, *range(10, 60, 10))
+samp_option_menu.pack(side = 'left')
+
+time_of_day_optionvar = tk.StringVar()
+time_of_day_optionvar.set("am")
+samp_option_menu = tk.OptionMenu(user_current_entry_frame, time_of_day_optionvar, 'am', 'pm')
+samp_option_menu.pack(side = 'left')
 
 
+user_close_time_frame = tk.Frame(window, bg = '#1a0500', bd= 5) #creates close time frame
+user_close_time_frame.place(relx=0.5, rely=0.33,relwidth=0.37,relheight =0.05, anchor='n') #positions close time frame
+user_close_time_label = tk.Label(user_close_time_frame, text= 'Close Time:', relief = 'solid',) #creates/displays 'close time' label 
+user_close_time_label.place(relwidth=1,relheight =1) #formats text display
 
-optionVar = tk.StringVar()
-optionVar.set("7am")
+close_hour_Var = tk.StringVar() #CREATES variable for use selected close hour
+close_hour_Var.set('4') # sets default value to 7
 
-user_resumption_entry_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
-user_resumption_entry_frame.place(relx=0.5, rely=0.39,relwidth=0.16,relheight =0.07, anchor='n')
-user_resumption_time_option_menu = tk.OptionMenu(user_resumption_entry_frame, optionVar, *time.keys())
-user_resumption_time_option_menu.pack()
+user_close_hour_option_frame = tk.Frame(window, bg = '#1a0500', bd= 5) #creates frame for close option
+user_close_hour_option_frame.place(relx=0.5, rely=0.37,relwidth=0.25,relheight =0.07, anchor='n') #positions frame
+user_close_time_close_option = tk.OptionMenu(user_close_hour_option_frame, close_hour_Var, *time.keys()) # creates option menu inside close hour frame 
+user_close_time_close_option.pack(side = 'left') #positions menu selection to the left side of the frame
 
 
-close_optionVar = tk.StringVar()
-close_optionVar.set("7am")
+closeminute_optionvar = tk.StringVar() #creates a variable for close minute option
+closeminute_optionvar.set("00") # assigns default value of 00
+close_minute_option_menu = tk.OptionMenu(user_close_hour_option_frame, closeminute_optionvar, *range(10, 60, 10)) #creates option menu
+close_minute_option_menu.pack(side = 'left') #positons option menue.
 
-user_close_time_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
-user_close_time_frame.place(relx=0.5, rely=0.45,relwidth=0.37,relheight =0.05, anchor='n')
-user_close_time_label = tk.Label(user_close_time_frame, text= 'Close Time:', relief = 'solid',)
-user_close_time_label.place(relwidth=1,relheight =1)
 
-user_close_time_entry_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
-user_close_time_entry_frame.place(relx=0.5, rely=0.49,relwidth=0.09,relheight =0.05, anchor='n')
-user_close_time_close_option = tk.OptionMenu(user_close_time_entry_frame, close_optionVar, *time.keys())
-user_close_time_close_option.pack()
+close_time_of_day_optionvar = tk.StringVar()
+close_time_of_day_optionvar.set("pm")
+close_time_of_day_option_menu = tk.OptionMenu(user_close_hour_option_frame, close_time_of_day_optionvar, 'am', 'pm')
+close_time_of_day_option_menu.pack(side = 'left')
+
+
 
 
 Calc_shutdown_time_button_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
 Calc_shutdown_time_button_frame.place(relx=0.5, rely=0.55,relwidth=0.30,relheight =0.07, anchor='n')
-Calc_shutdown_time_button = tk.Button(Calc_shutdown_time_button_frame, text = 'calculate shutdown time', bd = 6, font= "Verdana 10",  command = lambda: test_func() )
+Calc_shutdown_time_button = tk.Button(Calc_shutdown_time_button_frame, text = 'LAUNCH', bd = 6, font= "Verdana 10",  command = lambda: test_func() )
 Calc_shutdown_time_button.pack()
 
 
@@ -106,4 +138,9 @@ exit_button.pack()
 
 window.mainloop()
 
-print('resumption time:', optionVar.get(), 'close time:',close_optionVar.get())  
+start = [hour_optionvar.get(), minute_optionvar.get(), time_of_day_optionvar.get()]
+close = [close_hour_Var.get(), closeminute_optionvar.get(), close_time_of_day_optionvar.get()]
+print(start)
+print(close)
+
+# print('resumption time:', curr_optionvar.get(), 'close time:',close_optionVar.get())  
