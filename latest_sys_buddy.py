@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as tk, os
 from PIL import ImageTk, Image
 
 time_dict = {}
@@ -32,23 +32,31 @@ def test_func():
         hour = time_dict[close[0]+'pm'] - time_dict[start[0]+'am']
         minute = int(start[1]) + int(close[1])
         result = 'hour(s) : %s, Minutes : %s'%(hour,minute)
-        user_shutdown_time_label.config(text=str(result))
         shutdown_time = (hour*3600) + (minute * 60)
+        user_shutdown_time_label.config(text=str(result))
 
     elif start[-1] == 'pm' and close[-1] == 'am':
         hour = time_dict[close[0]+'am'] - time_dict[start[0]+'pm']
         minute = int(start[1]) + int(close[1])
         result = 'hour(s) : %s, Minutes : %s'%(hour,minute)
-        user_shutdown_time_label.config(text=str(result))
         shutdown_time = (hour*3600) + (minute * 60)
+        user_shutdown_time_label.config(text=str(result))
+        
     
     elif start[-1] == 'pm' and close[-1] == 'pm':
         hour = time_dict[close[0]+'pm'] - time_dict[start[0]+'pm']
         minute = int(start[1]) + int(close[1])
         result = 'hour(s) : %s, Minutes : %s'%(hour,minute)
-        user_shutdown_time_label.config(text=str(result))
         shutdown_time = (hour*3600) + (minute * 60)
+        user_shutdown_time_label.config(text=str(result))
     
+
+    elif start[-1] == 'pm' and close[-1] == 'pm':
+        hour = time_dict[close[0]+'pm'] - time_dict[start[0]+'pm']
+        minute = int(start[1]) + int(close[1])
+        result = 'hour(s) : %s, Minutes : %s'%(hour,minute)
+        shutdown_time = (hour*3600) + (minute * 60)
+        user_shutdown_time_label.config(text=str(result))
 
 
     # count = 0
@@ -145,7 +153,7 @@ Calc_shutdown_time_button.pack()
 
 user_shutdown_time_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
 user_shutdown_time_frame.place(relx=0.5, rely=0.65,relwidth=0.37,relheight =0.06, anchor='n')
-user_shutdown_time_label = tk.Label(user_shutdown_time_frame, text= 'shutdown Time:', relief = 'solid',)
+user_shutdown_time_label = tk.Label(user_shutdown_time_frame, text= 'shutdown Time in:', relief = 'solid',)
 user_shutdown_time_label.place(relwidth=1,relheight =1)
 
 user_shutdown_time_entry_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
