@@ -6,7 +6,8 @@ for num in range(6, 12):
     time_dict.update({str(num)+'AM':num})
 for num in range(2, 6):
     time_dict.update({str(num)+'AM':num})
-
+for num in range(13, 24):
+    time_dict.update({str(num)+'PM': num})
 
 time_dict.update({'12PM':12})
 count = 13
