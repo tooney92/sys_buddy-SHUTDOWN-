@@ -19,8 +19,7 @@ time_dict.update({'1AM':25, '12AM':24})
 time_dict2 = {}
 for num in range(0, 13):
     time_dict2.update({str(num):num})
-
-
+    
 def current_time():
     now = datetime.datetime.now()
     current_time = now. strftime("%H:%M:%p")
@@ -50,9 +49,7 @@ for num in range(0, 13):
 am_time_dict = {}
 for num in range(0, 12):
     am_time_dict.update({str(num)+'AM':num})
-
 main_shutdown_time = []
-
 
 def test_func():
     start = current_time()
@@ -199,7 +196,6 @@ frame.place(relx=0.5, rely=0.06,relwidth=0.37,relheight =0.08, anchor='n')
 sys_bud_label = tk.Label(frame, text = 'sleep_buddy',font= "Verdana 10", relief = 'solid', )
 sys_bud_label.place(relwidth=1,relheight =1)
 
-
 start_frame = tk.Frame(window, bg = 'white', bd= 1) #creates start time frame
 start_frame.place(relx=0.5, rely=0.19,relwidth=0.30,relheight =0.07, anchor='n') #positions start time frame
 user_start_time_button = tk.Button(start_frame, text= 'Get Current system time',  bd = 6, font= "Verdana 10", command = lambda: current_time()) #places label in start time frame
@@ -209,7 +205,6 @@ user_current_entry_frame = tk.Frame(window,   bg = 'white', bd= 1)
 user_current_entry_frame.place(relx=0.5, rely=0.26,relwidth=0.22,relheight =0.04, anchor='n')
 user_current_time_option_label = tk.Label(user_current_entry_frame, font= "Verdana 10", relief = 'solid', )
 user_current_time_option_label.place(relwidth=1,relheight =1)
-
 
 user_close_time_frame = tk.Frame(window, bg = 'white', bd= 1) #creates close time frame
 user_close_time_frame.place(relx=0.5, rely=0.33,relwidth=0.30,relheight =0.05, anchor='n') #positions close time frame
@@ -224,26 +219,20 @@ user_close_hour_option_frame.place(relx=0.5, rely=0.37,relwidth=0.25,relheight =
 user_close_time_close_option = tk.OptionMenu(user_close_hour_option_frame, close_hour_Var, *time_dict2.keys()) # creates option menu inside close hour frame 
 user_close_time_close_option.pack(side = 'left') #positions menu selection to the left side of the frame
 
-
 closeminute_optionvar = tk.StringVar() #creates a variable for close minute option
 closeminute_optionvar.set("00") # assigns default value of 00
 close_minute_option_menu = tk.OptionMenu(user_close_hour_option_frame, closeminute_optionvar, *range(0, 60, 5)) #creates option menu
 close_minute_option_menu.pack(side = 'left') #positons option menue.
-
 
 close_time_of_day_optionvar = tk.StringVar()
 close_time_of_day_optionvar.set("PM")
 close_time_of_day_option_menu = tk.OptionMenu(user_close_hour_option_frame, close_time_of_day_optionvar, 'AM', 'PM')
 close_time_of_day_option_menu.pack(side = 'left')
 
-
-
-
 Calc_shutdown_time_button_frame = tk.Frame(window, bg = 'white', bd= 1)
 Calc_shutdown_time_button_frame.place(relx=0.5, rely=0.55,relwidth=0.30,relheight =0.07, anchor='n')
 Calc_shutdown_time_button = tk.Button(Calc_shutdown_time_button_frame, text = 'Calculate', bd = 6, font= "Verdana 10",  command = lambda: test_func() )
 Calc_shutdown_time_button.place(relwidth=1,relheight =1)
-
 
 user_shutdown_time_frame = tk.Frame(window, bg = 'white', bd= 1)
 user_shutdown_time_frame.place(relx=0.5, rely=0.65,relwidth=0.37,relheight =0.06, anchor='n')
@@ -255,14 +244,10 @@ user_shutdown_time_entry_frame.place(relx=0.5, rely=0.7,relwidth=0.29,relheight 
 user_shutdown_time_label = tk.Label(user_shutdown_time_entry_frame)
 user_shutdown_time_label.place(relwidth=1,relheight =1)
 
-
-
-
 exit_button_frame = tk.Frame(window, bg = '#1a0500', bd= 5)
 exit_button_frame.place(relx=0.5, rely=0.8,relwidth=0.12,relheight =0.08, anchor='n')
 exit_button = tk.Button(exit_button_frame, text = 'launch', bd = 6, font= "Verdana 10", bg = '#1a0d00', fg = 'white', command = window.quit)
 exit_button.pack()
-
 
 window.mainloop()
 print(time_dict)
